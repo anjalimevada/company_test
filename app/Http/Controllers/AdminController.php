@@ -137,7 +137,7 @@ class AdminController extends Controller
 
         if((isset($request->logo)) && (!empty($request->logo))) 
         {
-            $user->addMedia($request->logo)->preservingOriginal()->toMediaCollection('company-logo');
+            $user->addMediaFromRequest('logo')->preservingOriginal()->toMediaCollection('company-logo');
         }
         \Session::put('success','Company register successfully!!');
         return redirect()->route('adminDashboard');

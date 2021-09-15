@@ -60,7 +60,7 @@
                 </div>
                 @endif
                 {{ \Session::forget('success') }}
-            <form action="{{ route('postCompanyRegister') }}" method="post" class="form" id="register_form">
+            <form action="{{ route('postCompanyRegister') }}" method="post" class="form" id="register_form" enctype="multipart/form-data">
             @csrf
                 <div class="form-content">
                     <div class="row">
