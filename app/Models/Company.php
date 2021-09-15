@@ -44,11 +44,11 @@ class Company extends Authenticatable implements HasMedia
     ];
 
     // 'image', 
-    protected $appends = [ 'logo'];
+    protected $appends = ['logo'];
 
     public function registerMediaCollections(): void
     {
-        $this->addMediaCollection('logo')
+        $this->addMediaCollection('company-logo')
         ->singleFile();
     } 
 
@@ -57,7 +57,7 @@ class Company extends Authenticatable implements HasMedia
     **/
     public function getLogoAttribute()
     {
-        $image = $this->getMedia('logo')->first();
+        $image = $this->getMedia('company-logo')->first();
         if ($image) 
         {
             return $image->getFullUrl();

@@ -20,7 +20,7 @@ Route::get('/', function () {
 Route::group(['prefix' => 'admin'], function () {
     	// Admin Auth
 	Route::get('login','AdminController@getLogin')->name('adminLogin');
-    Route::post('login', 'AdminController@postLogin')->name('adminLoginPost');
+    Route::post('post-login', 'AdminController@postLogin')->name('adminLoginPost');
 
     Route::group(['middleware' => 'adminauth'], function () {
         // Admin Dashboard

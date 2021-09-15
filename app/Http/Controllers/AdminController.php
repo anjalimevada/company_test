@@ -111,15 +111,11 @@ class AdminController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'email' => 
-                'required',
-                'email',
-            'mobile' => 
-                'required', 
-                'min:10',
+            'email' => 'required|email',
+            'mobile' => 'required|min:10',
             'address' => 'required',
             'website'=> 'required',        
-            'password' => 'required|confirmed'
+            'password' => 'required|confirmed|min:6'
         ]);
         if($validator->fails()){
             return back()->withInput($request->all())->withErrors($validator->errors());
@@ -141,7 +137,7 @@ class AdminController extends Controller
 
         if((isset($request->logo)) && (!empty($request->logo))) 
         {
-            $user->addMedia($request->logo)->toMediaCollection('logo');
+            $user->addMedia($request->logo)->toMediaCollection('company-logo');
         }
         \Session::put('success','Company register successfully!!');
         return redirect()->route('adminDashboard');
@@ -157,6 +153,6 @@ class AdminController extends Controller
         auth()->guard('admin')->logout();
         \Session::flush();
         \Session::put('success','You are logout successfully');        
-        return redirect(route('home'));
+        return redirect(route('adminLogin'));
     }
 }
