@@ -133,11 +133,11 @@ class AdminController extends Controller
         $mailArray = array(
             'name' => $user->name
         );
-        Mail::to([$user->email])->send(new VerifyCompanyMail($mailArray));
+        // Mail::to([$user->email])->send(new VerifyCompanyMail($mailArray));
 
         if((isset($request->logo)) && (!empty($request->logo))) 
         {
-            $user->addMedia($request->logo)->toMediaCollection('company-logo');
+            $user->addMedia($request->logo)->preservingOriginal()->toMediaCollection('company-logo');
         }
         \Session::put('success','Company register successfully!!');
         return redirect()->route('adminDashboard');

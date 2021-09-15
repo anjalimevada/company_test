@@ -46,13 +46,10 @@
 
     </style>
 </head>
-<body>
-
-    <div class="container register-form">
-    <form action="{{ route('postCompanyRegister') }}" method="post" class="form" id="register_form">
-        {!! csrf_field() !!}
+    <body>
+        <div class="container register-form">
                 <div class="note">
-                    <p>Register Your Company </p>
+                    <p>Register Company </p>
                 </div>
                 @if(\Session::get('success'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -63,6 +60,8 @@
                 </div>
                 @endif
                 {{ \Session::forget('success') }}
+            <form action="{{ route('postCompanyRegister') }}" method="post" class="form" id="register_form">
+            @csrf
                 <div class="form-content">
                     <div class="row">
                         <div class="col-md-6">
@@ -135,7 +134,7 @@
                         <button type="submit" class="btnSubmit" id="button">Register</button>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
 
         <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
