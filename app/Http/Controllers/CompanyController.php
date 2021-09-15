@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\Controller;
 use App\Models\Company;
 use Validator;
 use Session;
@@ -26,7 +30,6 @@ class CompanyController extends Controller
         if($validator->fails()){
             return back()->withInput($request->all())->withErrors($validator->errors());
         }
-       
         if (auth()->guard('company')->attempt(['email' => $request->input('email'), 'password' => $request->input('password')]))
         {
             $user = auth()->guard('company')->user();

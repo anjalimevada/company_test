@@ -41,25 +41,25 @@
 <body>
     <div class="login-form">
         <form action="{{ route('PostCompanyLogin') }}" method="post" id="login_form">
-           {!! csrf_field() !!}
+           @csrf
            <h2 class="text-center">Company Login</h2>
            @if(\Session::get('success'))
-           <div class="alert alert-success alert-dismissible fade show" role="alert">
-            {{ \Session::get('success') }}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">×</span>
-            </button>
-        </div>
-        @endif
-        {{ \Session::forget('success') }}
-        @if(\Session::get('error'))
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            {{ \Session::get('error') }}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">×</span>
-            </button>
-        </div>
-        @endif       
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ \Session::get('success') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            @endif
+            {{ \Session::forget('success') }}
+            @if(\Session::get('error'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ \Session::get('error') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            @endif       
         <div class="form-group">
             <input type="email" class="form-control" name="email" placeholder="Email" required data-parsley-required-message="Please enter email">
             @if ($errors->has('email'))
@@ -76,7 +76,6 @@
             </span>
             @endif
         </div>
-        <input type="hidden" name="offset" id="offset" />
         <div class="form-group">
             <button type="submit" class="btn btn-primary btn-block" id="button">Login</button>
         </div>  
